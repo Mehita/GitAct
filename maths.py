@@ -1,4 +1,3 @@
-
 class SimpleMath:
     @staticmethod
     def addition(a, b):
