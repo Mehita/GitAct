@@ -26,7 +26,7 @@ jobs:
 
     - name: Lint with pylint
       run: |
-        pylint maths.py test_maths.py --disable=C0114,C0115,C0116,C0303,R0801
+        pylint maths.py test_maths.py 
 
     - name: Run unit tests
       run: |
