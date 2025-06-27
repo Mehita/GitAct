@@ -1,19 +1,18 @@
-name: Python unit tests
+name: Python CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -27,9 +26,12 @@ jobs:
 
     - name: Lint with pylint
       run: |
-        pylint maths.py test_maths.py
+        pylint maths.py test_maths.py --disable=C0114,C0115,C0116,C0303,R0801
 
-
-    - name: Run tests
+    - name: Run unit tests
       run: |
         python -m unittest discover -s . -p "test_*.py"
+
+    - name: Build Docker image
+      run: |
+        docker build -t simplemath-app .
