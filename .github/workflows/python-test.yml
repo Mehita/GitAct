@@ -27,7 +27,8 @@ jobs:
 
     - name: Lint with pylint
       run: |
-        pylint maths test_maths
+        pylint maths.py test_maths.py
+
 
     - name: Run tests
       run: |
