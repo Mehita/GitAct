@@ -18,22 +18,17 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.x'   # version de Python
+        python-version: '3.x'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        
-    - name: Lint with pylint       
-      run: |
-        pylint maths.py
+        pip install pylint
 
-    - name: Install dependencies
+    - name: Lint with pylint
       run: |
-       python -m pip install --upgrade pip
-       pip install pylint
-
+        pylint maths.py test_maths.py
 
     - name: Run tests
       run: |
-        python -m unittest discover -s . -p "maths.py"
+        python -m unittest discover -s . -p "test_*.py"
